@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 这是一个容器，把东西放在屏幕中间 -->
+    <div style="text-align: center; margin-top: 100px;">
+        
+        <!-- 1. HTML: 放一个标题 -->
+        <h1 id="title">你好，小宝！</h1>
+        
+        <!-- 1. HTML: 放一个按钮 -->
+        <button onclick="sayHello()" style="padding: 10px 20px; font-size: 20px;">
+            点我试一下
+        </button>
+
+    </div>
+
+    <!-- 3. JavaScript: 这里写逻辑 -->
+    <script>
+        function sayHello() {
+            // 弹出一个提示框
+            alert("老公爱你哦！");
+            
+            // 修改网页上的文字
+            document.getElementById("title").innerText = "你已经是个幸福的小宝了！";
+            
+            // 改变背景颜色
+            document.body.style.backgroundColor = "lightblue";
+        }
+    </script>
+</body>
+</html>
