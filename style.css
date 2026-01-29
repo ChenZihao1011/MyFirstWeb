@@ -1,0 +1,111 @@
+:root{
+  --bg-0: #0f1115;
+  --bg-1: #161922;
+  --ink: #e8f0ff;
+  --ink-soft: #b7c3d0;
+  --accent: #9ee7ff;
+  --glow: rgba(158,231,255,0.25);
+}
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 50% 10%, var(--bg-1), transparent 60%),
+    linear-gradient(180deg, #0b0c10 0%, var(--bg-0) 100%);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+               "PingFang SC","Hiragino Sans GB","Microsoft YaHei",
+               "Noto Sans SC", "Helvetica Neue", Arial, "Apple Color Emoji",
+               "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.app{
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.fly-container{
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  width: min(680px, 92vw);
+  text-align: center;
+  filter: drop-shadow(0 2px 6px var(--glow));
+}
+
+.fly{
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 10px rgba(158,231,255,0.3);
+  opacity: 0;
+  transform: translate3d(var(--dx, 0px), 0, 0);
+  animation: rise 900ms ease-out forwards;
+}
+
+.muyu{
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.emoji{
+  display: inline-block;
+  font-size: clamp(96px, 18vw, 200px);
+  line-height: 1;
+  filter:
+    drop-shadow(0 10px 30px rgba(0,0,0,0.45))
+    drop-shadow(0 0 24px rgba(255,255,255,0.05));
+  transform-origin: 50% 55%;
+}
+
+.muyu.hit .emoji{
+  animation: bonk 420ms cubic-bezier(.2,.7,.2,1.2);
+}
+
+.counter{
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 2.8vw, 20px);
+  color: var(--ink-soft);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 999px;
+  padding: 8px 16px;
+  backdrop-filter: blur(6px);
+}
+
+@keyframes bonk{
+  0%   { transform: scale(1); }
+  28%  { transform: scale(0.90); }
+  55%  { transform: scale(1.10); }
+  75%  { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes rise{
+  0%   { opacity: 0; transform: translate3d(var(--dx, 0px), 8px, 0); }
+  12%  { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(var(--dx, 0px), -42px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .muyu.hit .emoji{ animation: none; }
+  .fly{ animation: none; opacity: 1; }
+}
+``
